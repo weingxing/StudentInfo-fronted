@@ -1,0 +1,35 @@
+<!--pages/list/list.wxml-->
+<view class='nav'><text>检索结果：</text></view>
+<!-- 没有信息，显示  “无记录” -->
+<view class='empty' hidden='{{haveInfo}}'>
+  <image src='/images/empty.png'></image>
+  <view>
+    <text>无记录</text>
+  </view>
+</view>
+
+
+<!-- 查询到信息，输出信息 -->
+<view class='list' hidden='{{notHaveInfo}}' bindtap='detail'
+ wx:for="{{result}}" wx:key="{{index}}" 
+ data-sid='{{item.sid}}' 
+ data-sname='{{item.sname}}' 
+ data-sex='{{item.sex}}' 
+ data-className='{{item.className}}' 
+ data-collegeName='{{item.collegeName}}' 
+ data-majorName='{{item.majorName}}' 
+ data-categoryName='{{item.categoryName}}' 
+ data-address='{{item.address}}' 
+ data-phone='{{item.phone}}' 
+ data-idcard='{{item.idcard}}' 
+ data-photo='{{item.photo}}' 
+ data-remark='{{item.remark}} '>
+
+  <image src='{{item.photo}}'></image>
+  <view>
+    <text>{{item.sname}}</text>
+    <text>班级：{{item.className}}</text>
+    <text>类别：{{item.categoryName}}</text>
+    <button class='btn' plain hairline type="primary" size='mini'>查看</button>
+  </view>
+</view>

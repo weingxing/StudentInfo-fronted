@@ -1,0 +1,52 @@
+<!--pages/detail/detail.wxml-->
+<view class="img">
+  <image mode='aspectFit' bindtap='previewImg' src='{{photo}}'></image>
+</view>
+
+<view class="detail">
+  <text>基础信息</text>
+</view>
+
+<view class="group">
+  <van-cell-group>
+    <van-field value="{{sid}}" label="学号" type="textarea" disabled autosize/>
+    <van-field value="{{sname}}" label="姓名" type="textarea" disabled autosize/>
+    <van-field value="{{sex}}" label="性别" type="textarea" disabled autosize/>
+    <van-field value="{{categoryName}}" label="类别" type="textarea" disabled autosize/>
+    <van-field value="{{className}}" label="班级" type="textarea" disabled autosize/>
+    <van-field value="{{majorName}}" label="专业" type="textarea" disabled autosize/>
+    <van-field value="{{collegeName}}" label="学院" type="textarea" disabled autosize/>
+
+    <van-field value="{{phone}}" center clearable label="联系电话" 
+      border="{{ false }}" disabled />
+
+    <van-field value="{{idcard}}" label="身份证号" type="textarea" disabled autosize/>
+    <van-field value="{{address}}" label="家庭地址" type="textarea" disabled autosize/>
+    <view hidden="{{inEdit}}">
+      <van-field value="{{remark}}" label="备注" type="textarea" disabled autosize/>
+    </view>
+  </van-cell-group>
+</view>
+
+<view>
+  <view hidden="{{inEdit}}">
+    <van-button class="edit_btn" plain type="primary" bind:click="editRemark">修改备注</van-button>
+  </view>
+
+  <view hidden="{{notInEdit}}">
+    <van-cell-group>
+      <van-field label="备注" value="{{ remark }}" type="textarea" autosize border="{{ true }}"
+      bind:change="getNewRemark" />
+    </van-cell-group>
+    <view class="submit_btn">
+      <button plain type="primary" bindtap="updateRemark">提交</button>
+      <button plain type="warning" bindtap="cancelUpdateRemark">取消</button>
+    </view>
+  </view>
+
+  <view class="btn_group">
+    <van-button plain type="primary" bind:click="phoneCall">拨打电话</van-button>
+    <van-button plain type="primary" bind:click="copyIdcard">复制身份证号</van-button>
+    <van-button plain type="primary" bind:click="copyAddress">复制家庭地址</van-button>
+  </view>
+</view>

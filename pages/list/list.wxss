@@ -1,0 +1,5 @@
+/* pages/list/list.wxss */
+button {
+  font-weight: 100;
+  margin-bottom: 10rpx;
+}

@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<include src="../header/header.wxml"/>
+
+<view>
+  <view class='input'>
+    <van-search value="{{ value }}" placeholder="请输入检索关键词" bind:change="getKeyword"/>
+  </view>
+
+  <view class="search">
+    <van-button round type="primary" size="large" bind:click="search">搜 索</van-button>
+  </view>
+</view>
+
+<view class="btn_group">
+  <van-button plain type="primary" bind:click="getAllInfo">全部学生</van-button>
+  <van-button plain type="primary" bind:click="getSpecialInfo">特殊学生</van-button>
+</view>

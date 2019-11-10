@@ -1,0 +1,28 @@
+<!--pages/history/history.wxml-->
+<view class='nav'><text>浏览记录：</text></view>
+<view class='empty' hidden='{{haveInfo}}'>
+  <image src='/images/empty.png'></image>
+  <view>
+    <text>暂无记录</text>
+  </view>
+</view>
+
+<view class='list' hidden='{{notHaveInfo}}' bindtap='detail'
+ wx:for="{{result}}" wx:key="{{index}}" 
+ data-sid='{{item.sid}}' 
+ data-sname='{{item.sname}}' 
+ data-sex='{{item.sex}}' 
+ data-className='{{item.className}}' 
+ data-college='{{item.college}}' 
+ data-major='{{item.major}}' 
+ data-category='{{category}}' 
+ data-photo='{{photo}}'>
+
+  <image src='{{item.photo}}'></image>
+  <view>
+    <text>{{item.sname}}</text>
+    <text>班级：{{item.className}}</text>
+    <text>类别：{{item.category}}</text>
+    <van-button class='btn' plain hairline type="primary" size='mini'>查看</van-button>
+  </view>
+</view>

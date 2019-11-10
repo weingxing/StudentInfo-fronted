@@ -1,0 +1,18 @@
+/* pages/bind/bind.wxss */
+.title {
+  text-align: center;
+}
+.input{
+  margin-top:50rpx;
+}
+.submit{
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tip{
+  margin-left: 20rpx;
+  font-size: 12px;
+  color: red;
+}

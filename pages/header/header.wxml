@@ -1,0 +1,4 @@
+<!--pages/header/header.wxml-->
+<view>
+  <image src='/images/logo.png' class='logo'></image>
+</view>

@@ -1,0 +1,23 @@
+<!--pages/bind/bind.wxml-->
+<include src="../header/header.wxml" />
+
+<view class='title'><van-tag plain type="success" size='large'>用户绑定</van-tag></view>
+
+<view class='input'>
+
+  <van-cell-group>
+    <van-field bind:change="getTid" value="{{ message }}" 
+    label="工号" type="textarea" placeholder="请输入工号"
+    autosize required/>
+
+    <van-field bind:change="getName" value="{{ message }}" 
+    label="姓名" type="textarea" placeholder="请输入姓名"
+    autosize required/>
+  </van-cell-group>
+
+  <text class='tip'>为确保后续正常使用，请准确输入信息</text>
+</view>
+
+<view class='submit'>
+  <van-button round type="primary" size="normal" bind:click="submit">提交</van-button>
+</view>

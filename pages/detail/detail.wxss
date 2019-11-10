@@ -1,0 +1,48 @@
+/* pages/detail/detail.wxss */
+.img {
+  background-color: black;
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail {
+  margin-top: 30rpx;
+  margin-left: 10px;
+  font-size: 13px;
+  color: gray;
+}
+
+.group {
+  margin-top: 10rpx;
+}
+
+.edit_btn {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  margin-top: 30rpx;
+}
+
+.copy_btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30rpx;
+  padding: 40rpx 0;
+  margin: 0 50rpx;
+}
+
+.submit_btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30rpx 0;
+}
+
+.submit_btn button {
+  width: fit-content;
+}

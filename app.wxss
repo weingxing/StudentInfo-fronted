@@ -1,0 +1,102 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+/* header.wxml 样式表 */
+.logo{
+  height: 300rpx;
+  width: 755rpx;
+}
+
+
+/* list.wxml history.wxml 样式表 */
+.nav{
+  background-color: #fff;
+}
+
+.nav text{
+  font-weight: 700;
+  font-size: 13.5px;
+  color: black;
+  margin-left: 15rpx;
+}
+
+.empty {
+ display:flex;
+ flex-direction: column;
+ margin-top: 100rpx;
+ height: 100%;
+ align-items:center;
+}
+
+.empty view {
+  margin-top: 30rpx;
+  font-size: 14px;
+  color: cadetblue;
+  text-align: center;
+}
+
+.empty image{ 
+  width: 400rpx;
+  height: 550rpx;
+}
+
+.list{
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx;
+  height: 240rpx;
+  border-width: 4rpx 4rpx 0 0 0 0;
+  border-color: rgb(0, 236, 158);
+  border-style: solid;
+}
+
+.list text{
+  margin-top: 15rpx;
+  font-size: 14px;
+  color: gray;
+  line-height: 40rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+  width: 350rpx;
+}
+
+.list image{
+  width: 300rpx;
+  height: 240rpx;
+}
+
+.list view{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
+.btn{
+  margin-left: 240rpx;
+  margin-top: 10rpx;
+}
+
+.btn_group {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+  box-sizing: border-box;
+}
+
+.btn_group van-button {
+  margin-top: 30rpx;
+}
