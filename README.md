@@ -1,5 +1,5 @@
 # 学生信息管理系统——前端
-学生信息管理系统，微信小程序前端，需配合[学生信息管理系统后端](https://github.com/weingxing/StudentInfo-fronted)使用
+学生信息管理系统，微信小程序前端，需配合[学生信息管理系统后端](https://github.com/weingxing/StudentInfo-backend)使用
 
 
 
