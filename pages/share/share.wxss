@@ -1,0 +1,26 @@
+/* pages/share/share.wxss */
+.share{
+  display: flex;
+  flex-direction: column;
+  align-items:center; 
+  justify-content: center;
+  margin-top: 50rpx;
+}
+.share image{
+  width: 350rpx;
+  height: 350rpx;
+}
+
+.item{
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item van-button{
+  margin: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

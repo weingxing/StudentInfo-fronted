@@ -33,3 +33,14 @@
     <button class='btn' plain hairline type="primary" size='mini'>查看</button>
   </view>
 </view>
+
+<view hidden='{{notHaveInfo}}'>
+  <view style="text-align: center;" hidden="{{notHaveMore}}">
+    <van-loading size="15px" text-size="15px">
+      加载中...
+    </van-loading>
+  </view>
+  <view style="text-align: center;" hidden="{{haveMore}}">
+    <text class='reason_txt'>已加载全部数据</text>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+<!--pages/share/share.wxml-->
+<view class='share'>
+  <image src='/images/er_code.jpg'></image>
+</view>
+<view class='item'>
+  <van-button round type="primary" size="normal" bind:click="save" class='item'>保存到相册</van-button>
+  <van-button round type="primary" size="normal" open-type="share" class='item'>分享给朋友</van-button>
+</view>
+

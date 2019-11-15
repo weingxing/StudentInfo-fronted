@@ -1,0 +1,16 @@
+<!--pages/select/select.wxml-->
+
+<view class='empty' hidden='{{haveInfo}}'>
+  <image src='/images/empty.png'></image>
+  <view>
+    <text>无记录</text>
+  </view>
+</view>
+
+
+<!-- 查询到信息，输出信息 -->
+<view hidden='{{notHaveInfo}}' bindtap='open' wx:for="{{result}}" wx:key="{{index}}" data-category="{{item}}">
+  <view class="select">
+    <button class="btn" plain hairline type="primary" size='big'>{{item}}</button>
+  </view>
+</view>

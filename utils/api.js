@@ -1,4 +1,5 @@
 var domain = "https://wx.mapletown.xyz/studentinfo"
+// var domain= "http://localhost:8080"
 
 export default {
   getDomain: domain,
@@ -9,5 +10,8 @@ export default {
   getInfoByCategory: domain + "/getInfoByCategory",
   getSpecialInfo: domain + "/getSpecialInfo",
   getAllInfo: domain + "/getAllInfo",
-  updateRemark: domain + "/updateRemark"
+  updateRemark: domain + "/updateRemark",
+  getInfoByGrade: domain + "/search",
+  getAllGrade: domain + "/getAllGrade",
+  getInfoByGrade: domain + "/getInfoByGrade"
 }

@@ -91,12 +91,19 @@ Page({
   },
 
   share: function (e) {
+    wx.navigateTo({
+      url: '../share/share',
+    })
+  },
+
+  history: function (e) {
     // wx.navigateTo({
-    //   url: '../share/share',
+    //   url: '../history/history',
     // })
+
     wx.showModal({
-      title: '提示',
-      content: '未开启分享功能',
+      title: '功能开发中',
+      content: '该功能正在完善中',
       showCancel: false,
       success: function (res) {
         //弹窗成功的回调函数
@@ -105,16 +112,10 @@ Page({
     })
   },
 
-  history: function (e) {
-    wx.navigateTo({
-      url: '../history/history',
-    })
-  },
-
   about: function (e) {
     wx.showModal({
       title: '关于',
-      content: '学生信息管理 Version 0.0.1',
+      content: '学生信息管理 Version 0.1.1',
       showCancel: false,
       success: function (res) {
         //弹窗成功的回调函数

@@ -1,5 +1,7 @@
-// pages/list/list.js
+// pages/listAll/listAll.js
 const app = getApp()
+import api from "../../utils/api.js"
+
 Page({
 
   /**
@@ -7,15 +9,26 @@ Page({
    */
   data: {
     result: [],
+    token: null,
+    keyword: null,
+
     haveInfo: true,
-    notHaveInfo: false
+    notHaveInfo: false,
+
+    pageIndex: 1,
+    pageSize: 30,
+    pageCount: 1,
+
+    haveMore: true,
+    notHaveMore: false
   },
 
+  
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面显示
    */
-  onLoad: function (options) {
-
+  onShow: function (options) {
+      
   },
 
   /**
@@ -25,30 +38,113 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    var result = app.globalData.resultSet
-    this.setData({ result: result })
-    // 检查是否查询到信息
-    if (this.data.result == null || this.data.result == "") {
-      // 没有查询到信息
-      this.setData({
-        // 存在信息
-        haveInfo: false,
-        // 不存在信息
-        notHaveInfo: true
-      });
-    } else {
-      //查询到信息
-      this.setData({
-        // 存在信息
-        haveInfo: true,
-        // 不存在信息
-        notHaveInfo: false
+  // 获取信息
+  getDate: function() {
+    var that = this;
+    if (this.data.token == "search" || this.data.token == "category") {
+      wx.request({
+        url: api.search,
+        data: {
+          currPage: this.data.pageIndex,
+          pageSize: this.data.pageSize,
+          keyword: this.data.keyword,
+          openid: app.globalData.openid
+        },
+        success: function (res) {
+          // console.log(" 获取的数据信息", res.data);
+          if (res.statusCode == 200) {
+            // 请求成功
+            var tempList = res.data.data;
+            that.setData({
+              pageCount: res.data.pageCount,
+              result: that.data.result.concat(tempList)
+            });
+          } else {
+            wx.showToast({
+              title: '网络错误',
+              icon: 'none'
+            })
+          }
+        },
+        fail: function (error) {
+          wx.showToast({
+            title: '发起网络请求失败',
+            icon: 'none'
+          })
+        }
+      })
+    } else if (this.data.token == "grade") {
+      wx.request({
+        url: api.getInfoByGrade,
+        data: {
+          currPage: this.data.pageIndex,
+          pageSize: this.data.pageSize,
+          grade: this.data.keyword,
+          openid: app.globalData.openid
+        },
+        success: function (res) {
+          // console.log(" 获取的数据信息", res.data);
+          if (res.statusCode == 200) {
+            // 请求成功
+            var tempList = res.data.data;
+            var tempPageCount = res.data.pageCount;
+            that.setData({
+              pageCount: tempPageCount,
+              result: that.data.result.concat(tempList)
+            });
+          } else {
+            wx.showToast({
+              title: '网络错误',
+              icon: 'none'
+            })
+          }
+        },
+        fail: function (error) {
+          wx.showToast({
+            title: '发起网络请求失败',
+            icon: 'none'
+          })
+        }
       })
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function () {
+    var that = this;
+    this.setData({
+      token: app.globalData.token,
+      keyword: app.globalData.keyword
+    })
+
+    this.getDate();
+
+    wx.showLoading({
+      title: '加载中',
+    })
+    
+    setTimeout(function(){
+      wx.hideLoading()
+      if (that.data.result.length > 0) {
+        that.setData({
+          haveInfo: true,
+          notHaveInfo: false
+        })
+      } else {
+        that.setData({
+          haveInfo: false,
+          notHaveInfo: true
+        })
+      }
+      if(that.data.pageCount == that.data.pageIndex) {
+        that.setData({
+          haveMore: false,
+          notHaveMore: true
+        })
+      }
+    }, 500)
   },
 
   /**
@@ -69,14 +165,22 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.pageIndex < this.data.pageCount) {
+      this.data.pageIndex++;
+      this.getDate();
+    } else {
+      this.setData({
+        haveMore: false,
+        notHaveMore: true
+      })
+    }
   },
 
   /**

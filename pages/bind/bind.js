@@ -89,10 +89,22 @@ Page({
         console.log(res.data)
         console.log(that.data.tid)
         if (res.data == "FINISHED") {
-          app.globalData.access = true
-          wx.navigateBack({
-            delta: 1
+          wx.showLoading({
+            title: '绑定中'
           })
+          app.globalData.access = true
+          setTimeout(function () {
+            wx.hideLoading()
+            wx.showToast({
+              title: '绑定成功'
+            })
+            setTimeout(function(){
+              wx.navigateBack({
+                delta: 1
+              })
+            },200)
+          }, 500)
+          
         } else {
           wx.showToast({
             title: '没有权限，请联系管理员',

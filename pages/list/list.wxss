@@ -3,3 +3,25 @@ button {
   font-weight: 100;
   margin-bottom: 10rpx;
 }
+
+ 
+ 
+ 
+.reason_txt{
+  font-size: 32rpx;
+  color: #D8D8D8;
+  display: table;
+  width: auto;
+  white-space: nowrap;
+  border-spacing: 0.5rem 0;
+  margin-left: 28rpx;
+  margin-right: 28rpx;
+}
+ 
+.reason_txt::before,.reason_txt::after{
+  display: table-cell;
+  content: "";
+  width: 50%;
+  background: linear-gradient(#D8D8D8, #D8D8D8) repeat-x center;
+  background-size: 0.1rem 0.1rem;
+}

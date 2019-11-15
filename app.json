@@ -1,14 +1,14 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/history/history",
     "pages/header/header",
     "pages/user/user",
     "pages/list/list",
     "pages/detail/detail",
-    "pages/bind/bind"
-    
+    "pages/bind/bind",
+    "pages/select/select",
+    "pages/share/share"
   ],
   "window": {
     "backgroundTextStyle": "light",

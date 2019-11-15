@@ -49,7 +49,7 @@ Page({
   onShow: function () {
     // 取出本地数据
     this.setData({ info: wx.getStorageSync("click") })
-    console.log(this.data.info)
+    // console.log(this.data.info)
     // 解析读取数据
     this.setData({
       sid: this.data.info.sid,

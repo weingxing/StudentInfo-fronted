@@ -20,6 +20,11 @@ App({
             }
 
             //根据openid确定是否已绑定工号
+            // 弹窗提示，确保完成网络请求
+            wx.showLoading({
+              title: '正在鉴权',
+            })
+
             wx.request({
               url: api.access,
               data: {
@@ -42,6 +47,8 @@ App({
                 })
               }
             })
+
+            setTimeout(function() {wx.hideLoading()}, 600)
           },
           fail: res => {
             // 调用登录接口换取openid失败回调函数
@@ -97,6 +104,9 @@ App({
     userInfo: null,
     openid: null,
     access: false,
-    resultSet: []
+    resultSet: [],
+    select: null,
+    token: null,
+    keyword: null
   }
 })

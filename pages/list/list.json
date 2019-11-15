@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "van-button": "/dist/button/index"
-  }
+    "van-button": "/dist/button/index",
+    "van-loading": "/dist/loading/index"
+  },
+  "enableReachBottom": true
 }
