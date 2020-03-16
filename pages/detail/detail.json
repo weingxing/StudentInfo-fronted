@@ -1,9 +1,8 @@
 {
   "usingComponents": {
     "van-field": "/dist/field/index",
-    "van-tag": "/dist/tag/index",
     "van-button": "/dist/button/index",
     "van-notice-bar": "/dist/notice-bar/index",
-    "van-dialog": "/dist/dialog/index"
+    "van-popup": "/dist/popup/index"
   }
 }

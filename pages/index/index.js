@@ -1,6 +1,6 @@
 //index.js
-import api from "../../utils/api.js"
-const app = getApp()
+import api from "../../utils/api.js";
+const app = getApp();
 
 Page({
   data: {
@@ -66,7 +66,7 @@ Page({
 
   // 获取输入
   getKeyword: function(e) {
-    var keyword = e.detail
+    var keyword = e.detail;
     this.setData({ keyword: keyword });
   },
 
@@ -81,9 +81,9 @@ Page({
           wx.switchTab({
             url: '../user/user'
           })
-        }, 500, res)
+        }, 500, res);
       }
-    })
+    });
   },
   
   // 搜索
@@ -100,24 +100,24 @@ Page({
           title: '加载中',
         });
         app.globalData.token = "search";
-        app.globalData.keyword = this.data.keyword
+        app.globalData.keyword = this.data.keyword;
         setTimeout(function() {
           wx.hideLoading();
           wx.navigateTo({
             url: '../list/list',
           });
-        }, 500)
+        }, 500);
       } else {
         wx.navigateTo({
           url: '../bind/bind',
-        })
+        });
       }
     } else if (this.data.keyword == null) {
       // 未获取到输入
       wx.showToast({
         title: '请输入关键词',
         icon: 'none'
-      })
+      });
     }
   },
 
@@ -131,11 +131,11 @@ Page({
         app.globalData.select = "grade"
         wx.navigateTo({
           url: '../select/select',
-        })
+        });
       } else {
         wx.navigateTo({
           url: '../bind/bind',
-        })
+        });
       }
     }
   },
@@ -149,12 +149,12 @@ Page({
         app.globalData.select = "category"
         wx.navigateTo({
           url: '../select/select',
-        })
+        });
       } else {
         wx.navigateTo({
           url: '../bind/bind',
-        })
+        });
       }
     }
   }
-})
+});

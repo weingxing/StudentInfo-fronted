@@ -9,21 +9,19 @@
 
 <view class="group">
   <van-cell-group>
-    <van-field value="{{sid}}" label="学号" type="textarea" disabled autosize/>
-    <van-field value="{{sname}}" label="姓名" type="textarea" disabled autosize/>
-    <van-field value="{{sex}}" label="性别" type="textarea" disabled autosize/>
-    <van-field value="{{categoryName}}" label="类别" type="textarea" disabled autosize/>
-    <van-field value="{{className}}" label="班级" type="textarea" disabled autosize/>
-    <van-field value="{{majorName}}" label="专业" type="textarea" disabled autosize/>
-    <van-field value="{{collegeName}}" label="学院" type="textarea" disabled autosize/>
-
-    <van-field value="{{phone}}" center clearable label="联系电话" 
-      border="{{ false }}" disabled />
-
-    <van-field value="{{idcard}}" label="身份证号" type="textarea" disabled autosize/>
-    <van-field value="{{address}}" label="家庭地址" type="textarea" disabled autosize/>
+    <van-field value="{{sid}}" label="学号" disabled autosize/>
+    <van-field value="{{sname}}" label="姓名" disabled autosize/>
+    <van-field value="{{sex}}" label="性别" disabled autosize/>
+    <van-field value="{{categoryName}}" wx:if="{{notPopUp}}" label="类别" type="textarea" icon="question-o"
+    disabled autosize bind:click-icon="answer"/>
+    <van-field value="{{className}}" label="班级" disabled autosize/>
+    <van-field value="{{majorName}}" label="专业" disabled autosize/>
+    <van-field value="{{collegeName}}" label="学院" disabled autosize/>
+    <van-field value="{{phone}}" label="联系电话" disabled />
+    <van-field value="{{idcard}}" label="身份证号" disabled autosize/>
+    <van-field value="{{address}}" wx:if="{{notPopUp}}" label="家庭地址" type="textarea" disabled autosize/>
     <view hidden="{{inEdit}}">
-      <van-field value="{{remark}}" label="备注" type="textarea" disabled autosize/>
+      <van-field value="{{remark}}" wx:if="{{notPopUp}}" label="备注" type="textarea" disabled autosize/>
     </view>
   </van-cell-group>
 </view>
@@ -49,4 +47,11 @@
     <van-button plain type="primary" bind:click="copyIdcard">复制身份证号</van-button>
     <van-button plain type="primary" bind:click="copyAddress">复制家庭地址</van-button>
   </view>
+</view>
+
+<view style="z-index: 50; height: {{windowHeight}}px;">
+  <van-popup show="{{ show }}" closeable position="bottom" round="{{true}}"
+  custom-style="height: 50%" bind:close="onClose">
+    <view style="padding: 100rpx 30rpx; text-indent: 2em;">{{describe}} </view>
+  </van-popup>
 </view>

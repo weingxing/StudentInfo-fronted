@@ -14,7 +14,8 @@
 <view class="menu">
   <van-cell-group>  
     <van-cell is-link icon="share" title="分享程序" bind:click="share"/>
-    <van-cell is-link icon="orders-o" title="历史浏览" bind:click="history"/>
+    <!-- <van-cell is-link icon="orders-o" title="历史浏览" bind:click="history"/> -->
+    <van-cell is-link icon="star-o" title="我的班级" bind:click="myclass"/>
     <van-cell is-link icon="warning-o" title="关 于" bind:click="about"/>
   </van-cell-group>
 </view>

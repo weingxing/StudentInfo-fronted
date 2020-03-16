@@ -61,9 +61,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
-    var that = this
+    var that = this;
     return {
-      title: '密水青科学生信息管理',
+      title: '学生信息管理',
       path: 'pages/index/index',
       imageUrl: "/images/er_code.jpg",
       success: function (res) {
@@ -85,8 +85,8 @@ Page({
           title: '保存成功',
           icon: 'success',
           duration: 2000
-        })
+        });
       }
-    })
+    });
   }
-})
+});

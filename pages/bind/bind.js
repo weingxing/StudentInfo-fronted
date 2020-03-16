@@ -69,11 +69,11 @@ Page({
   },
 
   getTid: function (e) {
-    this.setData({ tid: e.detail })
+    this.setData({ tid: e.detail });
   },
 
   getName: function (e) {
-    this.setData({ name: e.detail })
+    this.setData({ name: e.detail });
   },
 
   submit: function (e) {
@@ -81,43 +81,42 @@ Page({
     wx.request({
       url: api.register,
       data: {
-        tid: that.data.tid,
-        tname: that.data.name,
+        tno: that.data.tid,
+        name: that.data.name,
         openid: app.globalData.openid
       },
       success(res) {
-        console.log(res.data)
-        console.log(that.data.tid)
-        if (res.data == "FINISHED") {
+        console.log(res.data);
+        if (res.data.content) {
           wx.showLoading({
             title: '绑定中'
-          })
+          });
           app.globalData.access = true
           setTimeout(function () {
-            wx.hideLoading()
+            wx.hideLoading();
             wx.showToast({
               title: '绑定成功'
-            })
+            });
             setTimeout(function(){
               wx.navigateBack({
                 delta: 1
               })
-            },200)
-          }, 500)
+            },200);
+          }, 500);
           
         } else {
           wx.showToast({
             title: '没有权限，请联系管理员',
             icon: 'none'
-          })
+          });
         }
       },
       fail(err) {
         wx.showToast({
           title: '请重试',
           icon: 'none'
-        })
+        });
       }
-    })
+    });
   }
 })

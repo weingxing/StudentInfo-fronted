@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/history/history",
     "pages/header/header",
     "pages/user/user",
     "pages/list/list",

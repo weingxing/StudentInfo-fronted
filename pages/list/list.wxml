@@ -11,25 +11,26 @@
 
 <!-- 查询到信息，输出信息 -->
 <view class='list' hidden='{{notHaveInfo}}' bindtap='detail'
- wx:for="{{result}}" wx:key="{{index}}" 
- data-sid='{{item.sid}}' 
- data-sname='{{item.sname}}' 
+ wx:for="{{result}}" wx:key="index" 
+ data-sid='{{item.sno}}' 
+ data-sname='{{item.name}}' 
  data-sex='{{item.sex}}' 
- data-className='{{item.className}}' 
- data-collegeName='{{item.collegeName}}' 
- data-majorName='{{item.majorName}}' 
- data-categoryName='{{item.categoryName}}' 
+ data-className='{{item.clazz}}' 
+ data-collegeName='{{item.college}}' 
+ data-majorName='{{item.major}}' 
+ data-categoryName='{{item.category}}' 
  data-address='{{item.address}}' 
  data-phone='{{item.phone}}' 
  data-idcard='{{item.idcard}}' 
  data-photo='{{item.photo}}' 
- data-remark='{{item.remark}} '>
+ data-remark='{{item.remark}}' 
+ data-describe='{{item.descCategory}}'>
 
-  <image src='{{item.photo}}'></image>
+  <image src='{{item.photo}}' mode="aspectFit"></image>
   <view>
-    <text>{{item.sname}}</text>
-    <text>班级：{{item.className}}</text>
-    <text>类别：{{item.categoryName}}</text>
+    <text>{{item.name}}</text>
+    <text>班级：{{item.clazz}}</text>
+    <text>类别：{{item.category}}</text>
     <button class='btn' plain hairline type="primary" size='mini'>查看</button>
   </view>
 </view>

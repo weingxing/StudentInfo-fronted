@@ -1,6 +1,6 @@
 // pages/listAll/listAll.js
-const app = getApp()
-import api from "../../utils/api.js"
+const app = getApp();
+import api from "../../utils/api.js";
 
 Page({
 
@@ -17,7 +17,7 @@ Page({
 
     pageIndex: 1,
     pageSize: 30,
-    pageCount: 1,
+    count: 1,
 
     haveMore: true,
     notHaveMore: false
@@ -45,67 +45,99 @@ Page({
       wx.request({
         url: api.search,
         data: {
-          currPage: this.data.pageIndex,
-          pageSize: this.data.pageSize,
+          page: this.data.pageIndex,
+          limit: this.data.pageSize,
           keyword: this.data.keyword,
           openid: app.globalData.openid
         },
         success: function (res) {
-          // console.log(" 获取的数据信息", res.data);
+          // console.log("获取的数据信息", res.data);
           if (res.statusCode == 200) {
             // 请求成功
             var tempList = res.data.data;
             that.setData({
-              pageCount: res.data.pageCount,
+              count: res.data.count,
               result: that.data.result.concat(tempList)
             });
           } else {
             wx.showToast({
               title: '网络错误',
               icon: 'none'
-            })
+            });
           }
         },
         fail: function (error) {
           wx.showToast({
             title: '发起网络请求失败',
             icon: 'none'
-          })
+          });
         }
-      })
+      });
     } else if (this.data.token == "grade") {
       wx.request({
         url: api.getInfoByGrade,
         data: {
-          currPage: this.data.pageIndex,
-          pageSize: this.data.pageSize,
+          page: this.data.pageIndex,
+          limit: this.data.pageSize,
           grade: this.data.keyword,
           openid: app.globalData.openid
         },
         success: function (res) {
-          // console.log(" 获取的数据信息", res.data);
+          console.log(" 获取的数据信息", res.data);
           if (res.statusCode == 200) {
             // 请求成功
             var tempList = res.data.data;
-            var tempPageCount = res.data.pageCount;
+            var tempPageCount = res.data.count;
             that.setData({
-              pageCount: tempPageCount,
+              count: tempPageCount,
               result: that.data.result.concat(tempList)
             });
           } else {
             wx.showToast({
               title: '网络错误',
               icon: 'none'
-            })
+            });
           }
         },
         fail: function (error) {
           wx.showToast({
             title: '发起网络请求失败',
             icon: 'none'
-          })
+          });
         }
-      })
+      });
+    } else if (this.data.token == "myclass") {
+      wx.request({
+        url: api.getMyClassInfo,
+        data: {
+          page: this.data.pageIndex,
+          limit: this.data.pageSize,
+          openid: app.globalData.openid
+        },
+        success: function (res) {
+          console.log(" 获取的数据信息", res.data);
+          if (res.statusCode == 200) {
+            // 请求成功
+            var tempList = res.data.data;
+            var tempPageCount = res.data.count;
+            that.setData({
+              count: tempPageCount,
+              result: that.data.result.concat(tempList)
+            });
+          } else {
+            wx.showToast({
+              title: '网络错误',
+              icon: 'none'
+            });
+          }
+        },
+        fail: function (error) {
+          wx.showToast({
+            title: '发起网络请求失败',
+            icon: 'none'
+          });
+        }
+      });
     }
   },
 
@@ -117,13 +149,13 @@ Page({
     this.setData({
       token: app.globalData.token,
       keyword: app.globalData.keyword
-    })
+    });
 
     this.getDate();
 
     wx.showLoading({
       title: '加载中',
-    })
+    });
     
     setTimeout(function(){
       wx.hideLoading()
@@ -131,20 +163,20 @@ Page({
         that.setData({
           haveInfo: true,
           notHaveInfo: false
-        })
+        });
       } else {
         that.setData({
           haveInfo: false,
           notHaveInfo: true
-        })
+        });
       }
-      if(that.data.pageCount == that.data.pageIndex) {
+      if(Math.ceil(that.data.count/that.data.pageSize) == that.data.pageIndex) {
         that.setData({
           haveMore: false,
           notHaveMore: true
-        })
+        });
       }
-    }, 500)
+    }, 1000);
   },
 
   /**
@@ -172,14 +204,14 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.pageIndex < this.data.pageCount) {
+    if (this.data.pageIndex < Math.ceil(this.data.count / this.data.pageSize)) {
       this.data.pageIndex++;
       this.getDate();
     } else {
       this.setData({
         haveMore: false,
         notHaveMore: true
-      })
+      });
     }
   },
 
@@ -204,6 +236,6 @@ Page({
       wx.navigateTo({
         url: '../detail/detail',
       })
-    }, 500)
+    }, 500);
   }
-})
+});

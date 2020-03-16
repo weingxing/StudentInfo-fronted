@@ -1,4 +1,6 @@
 // pages/select/select.js
+// 特殊学生
+
 const app = getApp();
 import api from "../../utils/api.js";
 
@@ -9,8 +11,8 @@ Page({
    */
   data: {
     result: [],
-    haveInfo: false,
-    notHaveInfo: true,
+    haveInfo: true,
+    notHaveInfo: false,
     select: null
   },
 
@@ -35,7 +37,7 @@ Page({
     const that = this
     wx.showLoading({
       title: '加载中'
-    })
+    });
     var tmpToken = app.globalData.select
     this.setData({select: tmpToken})
     if (tmpToken == "grade") {
@@ -44,29 +46,29 @@ Page({
         success(res) {
           if(res.statusCode == 200) {
             that.setData({
-              result: res.data,
+              result: res.data.content,
               haveInfo: true,
               notHaveInfo: false
-            })
+            });
           } else {
             wx.showToast({
               title: '服务器错误',
               icon: 'none'
-            })
+            });
           }
         }
-      })
+      });
     } else if(tmpToken == "category") {
       this.setData({
         result: ["经济困难", "学习困难", "身体缺陷", "心理问题", "家庭变故", "优秀学生"],
         haveInfo: true,
         notHaveInfo: false
-      })
+      });
     }
 
     setTimeout(function () {
       wx.hideLoading()
-    }, 500)
+    }, 500);
   },
 
   /**
@@ -112,6 +114,6 @@ Page({
     
     wx.navigateTo({
       url: '../list/list',
-    })
+    });
   }
-})
+});

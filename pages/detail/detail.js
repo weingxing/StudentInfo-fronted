@@ -1,8 +1,7 @@
 // pages/detail/detail.js
 const app = getApp();
 import api from "../../utils/api.js";
-import Dialog from '../../dist/dialog/dialog';
-var util = require('../../utils/util.js');
+
 Page({
 
   /**
@@ -22,11 +21,14 @@ Page({
     idcard: null,
     address: null,
     remark: null,
+    describe: null,
 
     inEdit: false,
     notInEdit: true,
-    note: null
-    
+    note: null,
+
+    show: false,
+    notPopUp: true
   },
 
   /**
@@ -48,8 +50,8 @@ Page({
    */
   onShow: function () {
     // 取出本地数据
-    this.setData({ info: wx.getStorageSync("click") })
-    // console.log(this.data.info)
+    this.setData({ info: wx.getStorageSync("click") });
+    // console.log(this.data.info);
     // 解析读取数据
     this.setData({
       sid: this.data.info.sid,
@@ -63,7 +65,8 @@ Page({
       phone: this.data.info.phone,
       idcard: this.data.info.idcard,
       address: this.data.info.address,
-      remark: this.data.info.remark
+      remark: this.data.info.remark,
+      describe: this.data.info.describe
     });
   },
 
@@ -110,7 +113,7 @@ Page({
     this.setData({
       notInEdit: false,
       inEdit: true
-    })
+    });
   },
 
   updateRemark: function(e) {
@@ -120,13 +123,13 @@ Page({
       wx.showToast({
         title: '未改动备注',
         icon: 'none'
-      })
+      });
     } else {
       wx.request({
         url: api.updateRemark,
         method: "POST",
         data: {
-          sid: this.data.sid,
+          sno: this.data.sid,
           remark: this.data.note,
           openid: app.globalData.openid
         },
@@ -141,7 +144,7 @@ Page({
             // 确保网络请求及本地数据更新完成
             wx.showLoading({
               title: '提交中',
-            })
+            });
             setTimeout(function () {
               // 更改本地缓存数据
               var arr = app.globalData.resultSet;
@@ -158,18 +161,18 @@ Page({
                 notInEdit: true,
                 inEdit: false,
                 remark: tmp
-              })
+              });
               wx.hideLoading()
               wx.showToast({
                 title: '修改成功',
                 icon: 'none'
-              })
-            }, 200)
+              });
+            }, 200);
           } else {
             wx.showToast({
               title: '修改失败',
               icon: 'none'
-            })
+            });
           }
         },
         fail(res) {
@@ -177,16 +180,16 @@ Page({
           wx.showToast({
             title: '网络错误，请重试',
             icon: 'none'
-          })
+          });
         }
-      })
+      });
     }
   },
 
   phoneCall: function(e) {
     wx.makePhoneCall({
       phoneNumber:  this.data.phone
-    })
+    });
   },
 
   copyIdcard: function(e) {
@@ -197,9 +200,9 @@ Page({
           success(res) {
             
           }
-        })
+        });
       }
-    })
+    });
   },
 
   copyAddress: function (e) {
@@ -210,9 +213,9 @@ Page({
           success(res) {
            
           }
-        })
+        });
       }
-    })
+    });
   },
 
   previewImg: function (e) {
@@ -223,13 +226,33 @@ Page({
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { }
-    })
+    });
   },
 
   cancelUpdateRemark: function(e) {
     this.setData({
       notInEdit: true,
       inEdit: false
-    })
+    });
+  },
+
+  answer: function(e) {
+    var that = this;
+    that.setData({
+      notPopUp: false,
+      show: true
+    });
+  },
+  
+  onClose() {
+    var that = this;
+    this.setData({ show: false });
+    setTimeout(function () { 
+        that.setData({ notPopUp: true });
+      }, 300);
+  },
+
+  move: function(e) {
+
   }
 })

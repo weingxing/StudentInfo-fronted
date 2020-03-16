@@ -1,6 +1,6 @@
 // pages/user/user.js
-const app = getApp()
-import api from "../../utils/api.js"
+const app = getApp();
+import api from "../../utils/api.js";
 Page({
   /**
    * 页面的初始数据
@@ -33,7 +33,7 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
-      })
+      });
     }
   },
 
@@ -79,48 +79,68 @@ Page({
       this.setData({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
-      })
+      });
       app.globalData.userInfo = e.detail.userInfo
     }
 
     if(this.data.hasUserInfo && !app.globalData.access) {
       wx.navigateTo({
         url: '../bind/bind',
-      })
+      });
     }
   },
 
   share: function (e) {
     wx.navigateTo({
       url: '../share/share',
-    })
+    });
   },
 
-  history: function (e) {
-    // wx.navigateTo({
-    //   url: '../history/history',
-    // })
+  myclass: function (e) {
 
-    wx.showModal({
-      title: '功能开发中',
-      content: '该功能正在完善中',
-      showCancel: false,
-      success: function (res) {
-        //弹窗成功的回调函数
 
+
+    var that = this;
+    //检查是否登录
+    if (app.globalData.userInfo == null) {
+      wx.showToast({
+        title: '请登录',
+        icon: 'none',
+        success(res) {
+          // 回调函数
+
+        }
+      });
+    } else {
+      // 如果有权限访问数据，跳转页面请求数据
+      if (app.globalData.access) {
+        wx.showLoading({
+          title: '加载中',
+        });
+        app.globalData.token = "myclass";
+        setTimeout(function () {
+          wx.hideLoading();
+          wx.navigateTo({
+            url: '../list/list',
+          });
+        }, 500);
+      } else {
+        wx.navigateTo({
+          url: '../bind/bind',
+        });
       }
-    })
+    }
   },
 
   about: function (e) {
     wx.showModal({
       title: '关于',
-      content: '学生信息管理 Version 0.1.1',
+      content: '学生信息管理 Version 0.3.0',
       showCancel: false,
       success: function (res) {
         //弹窗成功的回调函数
 
       }
-    })
+    });
   }
-})
+});
