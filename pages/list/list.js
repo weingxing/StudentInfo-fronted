@@ -140,6 +140,10 @@ Page({
     }
   },
 
+  sleep: function(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -155,23 +159,25 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    // console.log(that.data.result.length);
 
-    if (that.data.result.length > 0) {
-      that.setData({
-        haveInfo: true,
-        notHaveInfo: false
-      });
-    } else {
-      that.setData({
-        haveInfo: false,
-        notHaveInfo: true
-      });
-    }
-
+    this.sleep(500).then(() => {
+      console.log(that.data.result.length);
+      if (that.data.result.length > 0) {
+        that.setData({
+          haveInfo: true,
+          notHaveInfo: false
+        });
+      } else {
+        that.setData({
+          haveInfo: false,
+          notHaveInfo: true
+        });
+      }
+    });
+    
     setTimeout(function(){
       wx.hideLoading();
-      
+
       if(Math.ceil(that.data.count/that.data.pageSize) == that.data.pageIndex) {
         that.setData({
           haveMore: false,
