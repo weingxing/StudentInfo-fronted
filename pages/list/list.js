@@ -83,7 +83,7 @@ Page({
           openid: app.globalData.openid
         },
         success: function (res) {
-          console.log(" 获取的数据信息", res.data);
+          // console.log(" 获取的数据信息", res.data);
           if (res.statusCode == 200) {
             // 请求成功
             var tempList = res.data.data;
@@ -115,7 +115,6 @@ Page({
           openid: app.globalData.openid
         },
         success: function (res) {
-          console.log(" 获取的数据信息", res.data);
           if (res.statusCode == 200) {
             // 请求成功
             var tempList = res.data.data;
@@ -156,20 +155,23 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    
+    // console.log(that.data.result.length);
+
+    if (that.data.result.length > 0) {
+      that.setData({
+        haveInfo: true,
+        notHaveInfo: false
+      });
+    } else {
+      that.setData({
+        haveInfo: false,
+        notHaveInfo: true
+      });
+    }
+
     setTimeout(function(){
-      wx.hideLoading()
-      if (that.data.result.length > 0) {
-        that.setData({
-          haveInfo: true,
-          notHaveInfo: false
-        });
-      } else {
-        that.setData({
-          haveInfo: false,
-          notHaveInfo: true
-        });
-      }
+      wx.hideLoading();
+      
       if(Math.ceil(that.data.count/that.data.pageSize) == that.data.pageIndex) {
         that.setData({
           haveMore: false,
