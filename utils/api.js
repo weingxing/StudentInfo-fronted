@@ -1,5 +1,5 @@
-// var domain = "https://wx.mapletown.xyz/studentinfo"
-var domain= "http://localhost:8080"
+var domain = "https://wx.mapletown.xyz"
+// var domain= "http://localhost:8080"
 
 export default {
   getDomain: domain,
