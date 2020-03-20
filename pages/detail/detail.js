@@ -28,7 +28,9 @@ Page({
     note: null,
 
     show: false,
-    notPopUp: true
+    notPopUp: true,
+
+    status: null
   },
 
   /**
@@ -49,6 +51,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({ status: app.globalData.status });
+    // console.log(this.data.status);
     // 取出本地数据
     this.setData({ info: wx.getStorageSync("click") });
     // console.log(this.data.info);

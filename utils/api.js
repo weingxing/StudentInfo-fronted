@@ -10,5 +10,6 @@ export default {
   updateRemark: domain + "/mini/updateRemark",
   getAllGrade: domain + "/mini/getGrade",
   getInfoByGrade: domain + "/mini/getInfoByGrade",
-  getMyClassInfo: domain + "/mini/getMyClassInfo"
+  getMyClassInfo: domain + "/mini/getMyClassInfo",
+  getStatus: domain + "/mini/getStatus"
 }

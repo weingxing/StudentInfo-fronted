@@ -10,6 +10,18 @@ App({
     wx.showLoading({
       title: '正在鉴权',
     });
+
+    wx.request({
+      url: api.getStatus,
+      success: function (res) {
+        if (res.data.content === 1)
+          that.globalData.status = true;
+        else
+          that.globalData.status = false;
+        
+      }
+    });
+
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -33,11 +45,11 @@ App({
                 //请求确定接口成功回调函数
                 // console.log(res.data);
                 that.globalData.access = res.data.content;
-                setTimeout(function () { wx.hideLoading() }, 800);
+                setTimeout(function () { wx.hideLoading() }, 1500);
               },
               fail: function () {
                 //请求确定权限接口失败回调函数
-                setTimeout(function () { wx.hideLoading() }, 800);
+                setTimeout(function () { wx.hideLoading() }, 1500);
                 wx.showModal({
                   title: '请求失败',
                   content: '请检查网络连接',
@@ -78,7 +90,6 @@ App({
       }
     });
 
-    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -109,6 +120,7 @@ App({
     resultSet: [],
     select: null,
     token: null,
-    keyword: null
+    keyword: null,
+    status: null
   }
 });
