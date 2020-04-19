@@ -23,14 +23,14 @@ Page({
     remark: null,
     describe: null,
 
-    inEdit: false,
-    notInEdit: true,
+    inEdit: false,  // 判断编辑备注的标志位
+    notInEdit: true, // 判断编辑备注的标志位
     note: null,
 
-    show: false,
-    notPopUp: true,
+    show: false,  // 判断弹出层的标志位
+    notPopUp: true,  // 判断弹出层的标志位
 
-    status: null
+    status: null  // 同全局变量status
   },
 
   /**
@@ -190,12 +190,14 @@ Page({
     }
   },
 
+  // 拨打电话
   phoneCall: function(e) {
     wx.makePhoneCall({
       phoneNumber:  this.data.phone
     });
   },
 
+  // 复制身份证号
   copyIdcard: function(e) {
     wx.setClipboardData({
       data: this.data.idcard,
@@ -209,6 +211,7 @@ Page({
     });
   },
 
+  // 复制地址
   copyAddress: function (e) {
     wx.setClipboardData({
       data: this.data.address,
@@ -222,6 +225,7 @@ Page({
     });
   },
 
+  // 点击查看图片
   previewImg: function (e) {
     var imgArr = [this.data.photo];
     wx.previewImage({
@@ -233,6 +237,7 @@ Page({
     });
   },
 
+  // 取消编辑备注
   cancelUpdateRemark: function(e) {
     this.setData({
       notInEdit: true,
@@ -240,6 +245,7 @@ Page({
     });
   },
 
+  // 显示弹出层
   answer: function(e) {
     var that = this;
     that.setData({
@@ -248,6 +254,7 @@ Page({
     });
   },
   
+  // 弹出层关闭
   onClose() {
     var that = this;
     this.setData({ show: false });

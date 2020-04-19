@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tid: null,
-    name: null
+    tid: null,  // 工号
+    name: null  // 姓名
 
   },
 
@@ -78,6 +78,7 @@ Page({
 
   submit: function (e) {
     const that = this;
+    // 提交绑定信息
     wx.request({
       url: api.register,
       data: {
@@ -97,6 +98,7 @@ Page({
             wx.showToast({
               title: '绑定成功'
             });
+            // 绑定成功后跳转到上级页面
             setTimeout(function(){
               wx.navigateBack({
                 delta: 1
@@ -105,6 +107,7 @@ Page({
           }, 500);
           
         } else {
+          // 后台没有添加信息
           wx.showToast({
             title: '没有权限，请联系管理员',
             icon: 'none'

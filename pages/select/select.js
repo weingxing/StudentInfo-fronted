@@ -40,6 +40,7 @@ Page({
     });
     var tmpToken = app.globalData.select
     this.setData({select: tmpToken})
+    // 点击 全部学生 时显示年级列表，年级从后台请求
     if (tmpToken == "grade") {
       wx.request({
         url: api.getAllGrade,
@@ -58,7 +59,9 @@ Page({
           }
         }
       });
-    } else if(tmpToken == "category") {
+    }
+    // 点击 特殊学生 时显示分类列表（这里分类写死了） 
+    else if(tmpToken == "category") {
       this.setData({
         result: ["经济困难", "学习困难", "身体缺陷", "心理问题", "家庭变故", "优秀学生"],
         haveInfo: true,
@@ -106,6 +109,7 @@ Page({
 
   },
 
+  // 设置 token ，便于下级页面判断请求接口，然后进行跳转
   open: function(e) {
     // console.log(e.currentTarget.dataset.category)
     app.globalData.keyword = e.currentTarget.dataset.category

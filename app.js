@@ -11,6 +11,7 @@ App({
       title: '正在鉴权',
     });
 
+    // 检测当前的状态，隐藏部分内容
     wx.request({
       url: api.getStatus,
       success: function (res) {
@@ -113,14 +114,15 @@ App({
     });
   },
   
+  // 全局变量
   globalData: {
-    userInfo: null,
-    openid: null,
-    access: false,
-    resultSet: [],
-    select: null,
-    token: null,
-    keyword: null,
-    status: null
+    userInfo: null,  // 用户信息
+    openid: null,  // openid
+    access: false,  // 是否有权限访问
+    resultSet: [],  // 结果
+    select: null,  // 选择的年级
+    token: null,  // 用于判断跳转到list页面后要请求哪个接口
+    keyword: null,  // 搜索关键词
+    status: null  // 显示/隐藏状态
   }
 });

@@ -76,6 +76,7 @@ Page({
     }
   },
   
+  // 保存图片到相册
   save: function (e) {
     wx.saveImageToPhotosAlbum({
       filePath: "/images/er_code.jpg",

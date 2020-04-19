@@ -9,16 +9,16 @@ Page({
    */
   data: {
     result: [],
-    token: null,
+    token: null,  // 判断请求哪个接口
     keyword: null,
 
     haveInfo: true,
     notHaveInfo: false,
 
     pageIndex: 1,
-    pageSize: 30,
+    pageSize: 30,  // 分页大小
     count: 1,
-
+    // 标志是否还有更多信息（是否要显示 没有更多信息 提示）
     haveMore: true,
     notHaveMore: false
   },
@@ -37,10 +37,12 @@ Page({
 
   },
 
-  // 获取信息
+  // 分页获取信息
   getDate: function() {
     var that = this;
+    // 上级页面是index（搜索）或 select（特殊学生）
     if (this.data.token == "search" || this.data.token == "category") {
+      // 请求接口，取得数据
       wx.request({
         url: api.search,
         data: {
@@ -72,7 +74,9 @@ Page({
           });
         }
       });
-    } else if (this.data.token == "grade") {
+    } 
+    // 上级页面是全部学生（select）
+    else if (this.data.token == "grade") {
       wx.request({
         url: api.getInfoByGrade,
         data: {
@@ -105,7 +109,9 @@ Page({
           });
         }
       });
-    } else if (this.data.token == "myclass") {
+    } 
+    // 上级页面是我的班级（mine）
+    else if (this.data.token == "myclass") {
       wx.request({
         url: api.getMyClassInfo,
         data: {
@@ -229,6 +235,7 @@ Page({
 
   },
    
+  // 查看详细信息
   detail: function (evt) {
     // 将信息持久化存储到本地，供下一页面使用
     wx.setStorageSync("click", evt.currentTarget.dataset)

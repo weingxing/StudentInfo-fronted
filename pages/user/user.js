@@ -83,13 +83,14 @@ Page({
       app.globalData.userInfo = e.detail.userInfo
     }
 
+    // 用户没有绑定工号
     if(this.data.hasUserInfo && !app.globalData.access) {
       wx.navigateTo({
         url: '../bind/bind',
       });
     }
   },
-
+  
   share: function (e) {
     wx.navigateTo({
       url: '../share/share',
